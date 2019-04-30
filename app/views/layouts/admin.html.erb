@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BookingApp</title>
+    <title>Dashboard BookingApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,13 +10,10 @@
   </head>
 
   <body>
-    <%= render '/partials/nav' %>
+    <%= render '/partials/nav_admin' %>
     <div class="container pad">
       <%= render '/partials/notification' %>
       <%= yield %>
     </div>
-    <footer>
-      <p class="text-center">Make with❤️ for Codeable</p>
-    </footer>
   </body>
 </html>

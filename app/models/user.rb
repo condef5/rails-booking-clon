@@ -16,4 +16,8 @@ class User < ApplicationRecord
     user.providers << Provider.find_or_create_by(name: auth.provider, uid: auth.uid, user_id: user)
     return user
   end
+
+  def has_role?(role)
+    self.role == role
+  end
 end

@@ -1,0 +1,20 @@
+<nav>
+  <div class="container navbar">
+    <div>
+       <%= link_to "Booking.com", root_path %>
+    </div>
+    <ul>
+      <%= link_to "Hotels", root_path %>
+      <%= link_to "Promotions", root_path %>
+
+      <% if current_user %>
+        <%= link_to "Bookings", root_path %>
+        <a href="#">Hi <%= current_user.name %></a>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Sign in', new_user_session_path %>
+        <%= link_to 'Register', new_user_registration_path %>
+      <% end %>
+    </ul>
+  </div>
+</nav>
