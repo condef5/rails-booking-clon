@@ -1,0 +1,30 @@
+<div>
+  <h2>List hotels</h2>
+  <%= link_to 'New hotel', new_admin_hotel_path %>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hotels.each do |hotel|%>
+        <tr>
+          <td><%= link_to hotel.name , admin_hotel_path(hotel) %></td>
+          <td><%= hotel.email %></td>
+          <td><%= hotel.city %></td>
+          <td><%= hotel.country %></td>
+          <td><%= hotel.address %></td>
+          <td>
+            <%= link_to 'Edit', edit_admin_hotel_path(hotel) %>
+            <%= link_to 'Delete', admin_hotel_path(hotel), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
