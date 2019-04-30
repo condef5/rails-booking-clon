@@ -22,6 +22,7 @@
           <td><%= hotel.country %></td>
           <td><%= hotel.address %></td>
           <td>
+            <%= link_to 'Add room', new_admin_hotel_room_path(hotel) %>
             <%= link_to 'Edit', edit_admin_hotel_path(hotel) %>
             <%= link_to 'Delete', admin_hotel_path(hotel), method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>

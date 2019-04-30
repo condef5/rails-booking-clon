@@ -5,5 +5,38 @@
   <p><b>Country:</b> <%= @hotel.country %></p>
   <p><b>Address:</b> <%= @hotel.address %></p>
 </div>
+
+<hr>
+
+<div>
+  <h3>List of Rooms</h3>
+  <%= link_to 'Add Room', new_admin_hotel_room_path(@hotel) %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amount of beds</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hotel.rooms.each do |room|%>
+        <tr>
+          <td><%= link_to room.name, admin_hotel_room_path(@hotel, room) %></td>
+          <td><%= room.amount_of_beds %></td>
+          <td><%= room.price %></td>
+          <td>
+            <%= link_to 'Add promotion', new_admin_hotel_room_path(room) %>
+            <%= link_to 'Edit', edit_admin_hotel_room_path(@hotel, room) %>
+            <%= link_to 'Delete', admin_hotel_room_path(@hotel, room), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Back', admin_hotels_path %>
 

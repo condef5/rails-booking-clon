@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root to: "hotels#index"
-    resources :hotels
+    resources :hotels do
+      resources :rooms
+    end
   end
 end

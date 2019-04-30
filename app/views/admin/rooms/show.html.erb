@@ -1,0 +1,11 @@
+<h2><%= @room.name %></h2>
+
+<div>
+  <p><b>Name:</b> <%= @room.name %></p>
+  <p><b>Price:</b> <%= @room.price%></p>
+  <p><b>Num of beds:</b> <%= @room.amount_of_beds %></p>
+  <p><b>Hotel:</b> <%= @hotel.name %></p>
+</div>
+
+<%= link_to 'Back', admin_hotels_path %>
+
