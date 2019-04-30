@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   
   namespace :admin do
-    root to: "home#index"
+    root to: "hotels#index"
     resources :hotels
   end
 end

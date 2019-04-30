@@ -5,7 +5,7 @@
     </div>
     <ul>
       <% if current_user %>
-        <%= link_to "Add Hotel", admin_root_path %>
+        <%= link_to "Add Hotel", new_admin_hotel_path %>
         <%= link_to "Metrics", admin_root_path %>
         <a href="#">Hi <%= current_user.name %></a>
         <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
