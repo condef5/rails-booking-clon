@@ -1,10 +1,12 @@
 class Admin::HotelsController < ApplicationController
-
+  before_action :set_hotel, only: [:show, :destroy]
+  
     def index
       @hotels = Hotel.all
     end
+
     def show
-      @hotel = Hotel.find(params[:id])
+
     end
   
     def new
@@ -18,6 +20,17 @@ class Admin::HotelsController < ApplicationController
         else
           render :new
         end
+    end
+
+    def destroy
+      @hotel.destroy
+      redirect_to admin_hotels_path, notice: 'Hotel was successfully destroyed.'
+    end
+
+    private
+
+    def set_hotel
+      @hotel = Hotel.find(params[:id])
     end
 
     def hotel_params

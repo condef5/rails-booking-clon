@@ -1,5 +1,5 @@
 class Hotel < ApplicationRecord
-  has_many :rooms
-  has_many :promotions, as: :promotionable
+  has_many :rooms, dependent: :destroy
+  has_many :promotions, as: :promotionable , dependent: :destroy
   has_many :bookings, through: :rooms
 end
