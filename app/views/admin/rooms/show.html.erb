@@ -5,7 +5,20 @@
   <p><b>Price:</b> <%= @room.price%></p>
   <p><b>Num of beds:</b> <%= @room.amount_of_beds %></p>
   <p><b>Hotel:</b> <%= @hotel.name %></p>
+  <% if @room.image.attached? %>
+    <p>Main image:</p>
+    <%= image_tag @room.image.variant(resize: "300x300") %>
+  <% end %>
+  <% if @room.gallery.attached? %>
+    <p>Gallery:</p>
+    <div class="gallery">
+      <% @room.gallery.each do |image| %>
+        <%= image_tag image.variant(resize: "300x300") %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
-<%= link_to 'Back', admin_hotels_path %>
+
+<%= link_to 'Back', admin_hotel_path(@hotel) %>
 
