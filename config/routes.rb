@@ -15,4 +15,9 @@ Rails.application.routes.draw do
       resources :promotions, controller: 'promotions_rooms'
     end
   end
+
+  namespace :api do
+      resources :hotels
+  end
+  resources :hotels
 end

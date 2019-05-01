@@ -61,3 +61,5 @@ gem 'omniauth-facebook'
 gem 'omniauth-github'
 
 gem 'mini_magick', '~> 4.8'
+
+gem 'active_model_serializers'
