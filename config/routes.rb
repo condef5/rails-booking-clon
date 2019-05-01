@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     root to: "hotels#index"
     resources :hotels do
       resources :rooms
+      resources :promotions
+    end
+
+    resources :rooms do
+      resources :promotions, controller: 'promotions_rooms'
     end
   end
 end

@@ -10,17 +10,26 @@
       <th>City</th>
       <th>Country</th>
       <th>Address</th>
+      <th>Promotions</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @hotels.each do |hotel|%>
         <tr>
-          <td><%= link_to hotel.name , admin_hotel_path(hotel) %></td>
+          <td><%= link_to hotel.name, admin_hotel_path(hotel) %></td>
           <td><%= hotel.email %></td>
           <td><%= hotel.city %></td>
           <td><%= hotel.country %></td>
           <td><%= hotel.address %></td>
+          <td>
+            <% if hotel.promotions.any? %>
+            <%= link_to 'Available', admin_hotel_promotions_path(hotel) %>
+            <% else %>
+            Unavailable
+            <% end %>
+          </td>
+          <%= link_to 'Add promotion', new_admin_hotel_promotion_path(hotel) %>
           <td>
             <%= link_to 'Add room', new_admin_hotel_room_path(hotel) %>
             <%= link_to 'Edit', edit_admin_hotel_path(hotel) %>

@@ -19,6 +19,7 @@
       <th>Name</th>
       <th>Amount of beds</th>
       <th>Price</th>
+      <th>Promotion</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -28,6 +29,13 @@
           <td><%= link_to room.name, admin_hotel_room_path(@hotel, room) %></td>
           <td><%= room.amount_of_beds %></td>
           <td><%= room.price %></td>
+          <td>
+            <% if room.promotions.any? %>
+              <%= link_to 'Available', admin_room_promotions_path(room) %>
+              <% else %>
+                Unavailable
+              <% end %>
+          </td>
           <td>
             <%= link_to 'Add promotion', new_admin_hotel_room_path(room) %>
             <%= link_to 'Edit', edit_admin_hotel_room_path(@hotel, room) %>
