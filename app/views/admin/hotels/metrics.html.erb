@@ -1,0 +1,39 @@
+<div>
+  <h2>Metrics hotels</h2>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Popular</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hotels.each do |hotel| %>
+      <tr>
+        <td> 
+          <% if hotel.id != @hotels.last.id %>
+            MOST
+          <% else %>
+            LESS
+          <% end %>
+        </td>
+        <td><%= link_to hotel.name , admin_hotel_path(hotel) %></td>
+        <td><%= hotel.email %></td>
+        <td><%= hotel.city %></td>
+        <td><%= hotel.country %></td>
+        <td><%= hotel.address %></td>
+        <td>
+          <% if hotel.id == @hotels.last.id %>
+            <%= link_to 'Delete', admin_hotel_path(hotel), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

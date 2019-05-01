@@ -32,6 +32,10 @@ class Admin::HotelsController < ApplicationController
     end
   end
 
+  def metrics
+    @hotels = HotelQueries.new.most_popular
+  end
+
   def destroy
     @hotel.destroy
     redirect_to admin_hotels_path, notice: 'Hotel was successfully destroyed.'
