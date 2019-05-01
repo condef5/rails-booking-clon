@@ -4,6 +4,18 @@
   <p><b>City:</b> <%= @hotel.city %></p>
   <p><b>Country:</b> <%= @hotel.country %></p>
   <p><b>Address:</b> <%= @hotel.address %></p>
+  <% if @hotel.image.attached? %>
+    <p>Main image:</p>
+    <%= image_tag @hotel.image.variant(resize: "300x300") %>
+  <% end %>
+  <% if @hotel.gallery.attached? %>
+    <p>Gallery:</p>
+    <div class="gallery">
+      <% @hotel.gallery.each do |image| %>
+        <%= image_tag image.variant(resize: "300x300") %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <hr>
@@ -25,26 +37,27 @@
   </thead>
   <tbody>
     <% @hotel.rooms.each do |room|%>
-        <tr>
-          <td><%= link_to room.name, admin_hotel_room_path(@hotel, room) %></td>
-          <td><%= room.amount_of_beds %></td>
-          <td><%= room.price %></td>
-          <td>
-            <% if room.promotions.any? %>
-              <%= link_to 'Available', admin_room_promotions_path(room) %>
-              <% else %>
-                Unavailable
-              <% end %>
-          </td>
-          <td>
-            <%= link_to 'Add promotion', new_admin_hotel_room_path(room) %>
-            <%= link_to 'Edit', edit_admin_hotel_room_path(@hotel, room) %>
-            <%= link_to 'Delete', admin_hotel_room_path(@hotel, room), method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
-        </tr>
-      <% end %>
+      <tr>
+        <td><%= link_to room.name, admin_hotel_room_path(@hotel, room) %></td>
+        <td><%= room.amount_of_beds %></td>
+        <td><%= room.price %></td>
+        <td>
+          <% if room.promotions.any? %>
+            <%= link_to 'Available', admin_room_promotions_path(room) %>
+            <% else %>
+              Unavailable
+            <% end %>
+        </td>
+        <td>
+          <%= link_to 'Add promotion', new_admin_hotel_room_path(room) %>
+          <%= link_to 'Edit', edit_admin_hotel_room_path(@hotel, room) %>
+          <%= link_to 'Delete', admin_hotel_room_path(@hotel, room), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Back', admin_hotels_path %>
+<%= link_to 'Back', admin_hotels_path %> |
+<%= link_to 'Edit', edit_admin_hotel_path(@hotel) %>
 

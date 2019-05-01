@@ -59,3 +59,5 @@ gem 'rspec-rails'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
+
+gem 'mini_magick', '~> 4.8'

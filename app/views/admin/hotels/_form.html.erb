@@ -25,6 +25,16 @@
     <%= f.text_field :address %>
   </div>
 
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gallery %><br />
+    <%= f.file_field :gallery, :multiple => true%>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
