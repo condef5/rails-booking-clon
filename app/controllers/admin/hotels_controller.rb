@@ -1,5 +1,6 @@
 class Admin::HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
+  before_action :user_notification_booking_deleted, only: [:destroy]
   
   def index
     @hotels = Hotel.all
@@ -50,4 +51,16 @@ class Admin::HotelsController < ApplicationController
     params.require(:hotel).permit(:name, :email, :city, :country, :address, :image, gallery: [])
   end
 
+  def user_notification_booking_deleted
+    @hotel = set_hotel
+    @bookings = @hotel.bookings
+      if @bookings.any?
+        @bookings.each do |booking|
+          BookingMailer
+          .with(user: booking.user_id, booking: booking)
+          .booking_deleted
+          .deliver_later
+        end
+      end
+  end
 end
