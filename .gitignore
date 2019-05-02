@@ -28,4 +28,4 @@
 
 # Ignore keys
 .env
-.Gemfile.lock
+Gemfile.lock
