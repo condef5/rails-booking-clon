@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 describe Api::HotelsController, type: :controller do
+  
   before do
-    Hotel.delete_all
-    @hotel_params = { 
+    @hotel = Hotel.create( 
       name: 'Oro Verde',
       email: 'drupvon+hotel1@gmail.com',
       city: 'Tingo Maria',
       country: 'Peru',
       address: 'Jr. Amazonas 440' 
-    }
+    )
   end
 
   describe 'GET index' do
@@ -19,7 +19,6 @@ describe Api::HotelsController, type: :controller do
     end
    
     it 'render json with all hotels' do
-      Hotel.create(name: 'ElEden', email: 'liamrn94', city: 'Tingo Maria',  country: 'Peru',  address: 'Jr arequipa 440')
       get :index
       hotels = JSON.parse(response.body)
       expect(hotels.size).to eq 1
@@ -29,16 +28,14 @@ describe Api::HotelsController, type: :controller do
 
   describe 'GET show' do
     it 'returns http status ok' do
-      hotel = Hotel.create(name: 'ElEden', email: 'liamrn94', city: 'Tingo Maria',  country: 'Peru',  address: 'Jr arequipa 440')
-      get :show, params: { id: hotel }
+      get :show, params: { id: @hotel }
       expect(response).to have_http_status(:ok)
     end
 
     it 'render the correct hotel' do
-      hotel = Hotel.create(name: 'ElEden', email: 'liamrn94', city: 'Tingo Maria',  country: 'Peru',  address: 'Jr arequipa 440')
-      get :show, params: { id: hotel }
+      get :show, params: { id: @hotel }
       expected_hotel = JSON.parse(response.body)
-      expect(expected_hotel["id"]).to eq(hotel.id)
+      expect(expected_hotel["id"]).to eq(@hotel.id)
     end
 
     it 'returns http status not found' do
@@ -49,13 +46,25 @@ describe Api::HotelsController, type: :controller do
   
   describe 'POST create' do
     it 'returns http status created' do
-      post :create, params: @hotel_params
+      post :create, params: {
+        name: 'Oro Verde',
+        email: 'drupvon+hotel1@gmail.com',
+        city: 'Tingo Maria',
+        country: 'Peru',
+        address: 'Jr. Amazonas 440'
+      }
       expect(response.status).to eq(201)
       expect(response).to have_http_status(:created)
     end
 
     it 'returns the created hotel' do
-      post :create, params: @hotel_params
+      post :create, params: {
+        name: 'Oro Verde',
+        email: 'drupvon+hotel1@gmail.com',
+        city: 'Tingo Maria',
+        country: 'Peru',
+        address: 'Jr. Amazonas 440'
+      }
       expected_hotel = JSON.parse(response.body)
       expect(expected_hotel).to have_key("id")
       expect(expected_hotel["name"]).to eq("Oro Verde")
@@ -64,14 +73,18 @@ describe Api::HotelsController, type: :controller do
 
   describe 'PATCH update' do
     it 'returns http status created' do
-      hotel = Hotel.create(@hotel_params)
-      patch :update, params: {id: hotel.id, city: 'LimaCity'}
+      patch :update, params: {
+        id: @hotel.id, 
+        city: 'LimaCity'
+      }
       expect(response).to have_http_status(:ok)
     end
 
     it 'returns the updated hotel' do
-      hotel = Hotel.create(@hotel_params)
-      patch :update, params: {id: hotel.id, city: 'LimaCity'}
+      patch :update, params: {
+        id: @hotel.id, 
+        city: 'LimaCity'
+      }
       expected_hotel = JSON.parse(response.body)
       expect(expected_hotel["city"]).to eq("LimaCity")
     end
@@ -79,16 +92,16 @@ describe Api::HotelsController, type: :controller do
 
   describe "DELETE destroy" do
     it "returns http status no content" do
-      hotel = Hotel.create(@hotel_params)
-      delete :destroy, params: { id: hotel }
+      delete :destroy, params: { 
+        id: @hotel 
+      }
       expect(response).to have_http_status(:no_content)
     end
     
     it "decrement by 1 the total of hotels" do
-        hotel = Hotel.create(@hotel_params)
-        expect do
-          delete :destroy, params: { id: hotel }
-        end.to change { Hotel.count }.by(-1)
+      expect do
+        delete :destroy, params: { id: @hotel }
+      end.to change { Hotel.count }.by(-1)
     end
   end
 end

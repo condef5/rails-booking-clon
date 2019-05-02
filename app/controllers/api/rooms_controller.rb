@@ -2,7 +2,7 @@ class Api::RoomsController < ApplicationController
   before_action :set_room, only: [:show, :update, :destroy]
 
   def index
-    render json: Room.all
+    render json: Hotel.find(params[:hotel_id]).rooms
   end
 
   def show
@@ -10,15 +10,13 @@ class Api::RoomsController < ApplicationController
   end
 
   def create
-    room = Room.create(
-      name: params[:name],
-      amount_of_beds: params[:amount_of_beds],
-      price: params[:price],
-      hotel_id: params[:hotel_id]
-    )
-    render json: room, status: :created
+    room = Room.new(room_params)
+    if room.save
+      render json: room, status: :created
+    else
+      render json: { errors: room.errors }
+    end
   end
-
 
   def update
     if @room.update(room_params)
@@ -43,6 +41,6 @@ class Api::RoomsController < ApplicationController
   end
 
   def room_params
-    params.permit(:name, :amount_of_beds, :price, :image, gallery: [])
+    params.permit(:name, :amount_of_beds, :price, :hotel_id)
   end
 end
