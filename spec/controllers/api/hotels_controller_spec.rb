@@ -1,8 +1,20 @@
 require 'rails_helper'
 
 describe Api::HotelsController, type: :controller do
-  
+
+  def authorization_header
+    user = User.create(
+      email: "space@gmail.com",
+      name:'space',
+      password:'secret123',
+      role:'admin'
+    )
+    token = JSONWebToken.encode(user_id: user.id)
+    { 'Authorization': "Bearer #{token}" }
+  end
+
   before do
+    request.headers.merge!(authorization_header)
     @hotel = Hotel.create( 
       name: 'Oro Verde',
       email: 'drupvon+hotel1@gmail.com',

@@ -65,6 +65,14 @@ hotels.each do |hotel|
     room.delete(:key)
     hotel.rooms.create(room.merge(rooms_images))
   end
+  
+  hotel.promotions.create(
+    start_date: Date.parse('28-04-2019'),
+    end_date: Date.parse('30-04-2019'),
+    discount_type: ['percentage', 'fixed'].sample,
+    discount_amount: rand(50) + 1
+  )
+
   hotel.rooms.sample.promotions.create(
     start_date: Date.parse('28-04-2019'),
     end_date: Date.parse('30-04-2019'),
