@@ -1,4 +1,5 @@
 class Admin::HotelsController < ApplicationController
+  before_action :authorize_hotel , only: [:index, :new, :edit, :show, :create, :update,:destroy, :metrics]
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
   before_action :user_notification_booking_deleted, only: [:destroy]
   
@@ -64,4 +65,9 @@ class Admin::HotelsController < ApplicationController
         end
       end
   end
+
+  def  authorize_hotel
+    authorize [:admin, Hotel]
+  end
+
 end

@@ -4,19 +4,23 @@ class Admin::RoomsController < ApplicationController
   def new
     @hotel = Hotel.find(params[:hotel_id])
     @room = Room.new
+    authorize [:admin, @room]
   end
 
   def show
     @hotel = Hotel.find(params[:hotel_id])
     @room = Room.find(params[:id])
+    authorize [:admin, @room]
   end
 
   def edit
+    authorize [:admin, @room]
   end
 
   def create
     @hotel = Hotel.find(params[:hotel_id])
     @room = @hotel.rooms.new(room_params)
+    authorize [:admin, @room]
     if @room.save
       redirect_to admin_hotel_room_path(@hotel, @room), notice: 'Room was successfully created.'
     else
@@ -25,6 +29,7 @@ class Admin::RoomsController < ApplicationController
   end
   
   def update
+    authorize [:admin, @room]
     if @room.update(room_params)
       redirect_to admin_hotel_room_path(@hotel, @room), notice: 'Room was successfully updated.'
     else
