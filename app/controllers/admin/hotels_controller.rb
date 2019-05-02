@@ -4,6 +4,7 @@ class Admin::HotelsController < ApplicationController
   
   def index
     @hotels = Hotel.all
+    render nothing: true, status: :ok
   end
 
   def edit

@@ -6,20 +6,34 @@ class Api::HotelsController < ApiController
     render json: @hotels
   end
 
-  def edit
-  end
-
   def show
     render json: @hotel
   end
 
   def create
+    @hotel = Hotel.new(hotel_params)
+    if @hotel.save
+      render json: @hotel, status: :created
+    else
+      render json: { errors: @hotel.errors}
+    end
   end
 
   def update
+    if @hotel.update(hotel_params)
+      render json: @hotel, status: :ok
+    else
+      render json: { errors: @hotel.errors}
+    end
   end
 
   def destroy
+    @hotel.destroy
+    render json: {},status: :no_content
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: { message: e.message }, status: :not_found
   end
 
   private    
@@ -28,6 +42,6 @@ class Api::HotelsController < ApiController
   end
 
   def hotel_params
-    params.require(:hotel).permit(:name, :email, :city, :country,  :address, :image, gallery: [])
+    params.permit(:name, :email, :city, :country,  :address, :image, gallery: [])
   end
 end

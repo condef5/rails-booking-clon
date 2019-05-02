@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-      resources :hotels
+    resources :hotels
   end
-  resources :hotels
 end
