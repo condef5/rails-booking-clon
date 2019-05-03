@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post 'login', to: 'session#login'
     resources :users 
     resources :hotels do
+      resources :promotions, controller: 'promotions_hotels'
       resources :rooms do
         resources :bookings
       end
