@@ -25,5 +25,9 @@ Rails.application.routes.draw do
         resources :bookings
       end
     end
+    resources :rooms do
+      resources :promotions, controller: 'promotions_rooms'
+    end
+
   end
 end
