@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(current_user)
     if current_user.has_role?('admin')
       return admin_root_path
+    elsif session[:room_id]
+      return reserve_path(room_id: session[:room_id])
     else
       return root_path
     end

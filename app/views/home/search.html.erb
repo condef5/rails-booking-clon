@@ -10,6 +10,7 @@
     <h4>Name: <%= room.name %></h4>
     <p>Price: <%= room.price %></p>
     <p>Num of beds: <%= room.amount_of_beds %></p>
+    <%= link_to "Reserved", reserve_path(room_id: room.id) %>
     <hr>
   <% end %>  
 </div>

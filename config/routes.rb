@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get '/search', to: 'home#search'
   get '/promotions', to: 'home#promotions'
   
-  resources :bookings 
+  resources :bookings
+  resources :rooms
+
+  get '/reserve', to: 'rooms#reserve'
+  post '/reserve', to: 'rooms#reserve_save'
 
   namespace :admin do
     root to: "hotels#index"
@@ -21,8 +25,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     post 'login', to: 'session#login'
-    resources :users
     get 'profile', to: 'users#profile'
+    resources :users
     resources :bookings
     resources :hotels do
       resources :promotions, controller: 'promotions_hotels'
@@ -34,6 +38,5 @@ Rails.application.routes.draw do
       resources :promotions, controller: 'promotions_rooms'
       post 'book', on: :member
     end
-
   end
 end

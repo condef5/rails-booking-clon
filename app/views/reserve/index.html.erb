@@ -1,0 +1,9 @@
+<%= form_tag reserve_path, :method => 'post', class: 'search__options' do %>
+  <%= date_field_tag :start_date, params[:start_date], placeholder: 'Start Date' %>
+  <%= date_field_tag :end_date, params[:end_date], placeholder: 'End Date' %>
+  <%= hidden_field_tag :room_id, @room.id %>
+  <div>
+    <h3><%= @room.name %>
+  </div>
+  <%= submit_tag "Reserved", :name => nil %>
+<% end %>
