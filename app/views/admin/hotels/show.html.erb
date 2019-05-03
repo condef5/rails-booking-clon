@@ -49,7 +49,7 @@
             <% end %>
         </td>
         <td>
-          <%= link_to 'Add promotion', new_admin_hotel_room_path(room) %>
+          <%= link_to 'Add promotion', new_admin_room_promotion_path(room) %>
           <%= link_to 'Edit', edit_admin_hotel_room_path(@hotel, room) %>
           <%= link_to 'Delete', admin_hotel_room_path(@hotel, room), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>

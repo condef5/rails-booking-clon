@@ -22,7 +22,7 @@
           <td><%= promotion.discount_amount %></td>
           <td>
             <%= link_to 'Edit', edit_admin_hotel_promotion_path(@hotel, promotion) %>
-            <%= link_to 'Delete', admin_hotel_promotions_path(@hotel, promotion), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete', admin_hotel_promotion_path(@hotel, promotion), method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
       <% end %>
