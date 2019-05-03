@@ -2,7 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Api::UsersController, type: :controller do
 
+  def authorization_header
+    user = User.create(
+      email: "space@gmail.com",
+      name:'space',
+      password:'secret123',
+      role:'admin'
+    )
+    token = JSONWebToken.encode(user_id: user.id)
+    { 'Authorization': "Bearer #{token}" }
+  end
+
   before do
+    request.headers.merge!(authorization_header)
     @user = User.create(
       name: 'lian',
       email: 'liamrn94@gmail.com',
@@ -20,7 +32,7 @@ RSpec.describe Api::UsersController, type: :controller do
     it 'render json with all users' do
       get :index
       users = JSON.parse(response.body)
-      expect(users.size).to eq 1
+      expect(users.size).to eq 2
     end
   end
 
