@@ -104,6 +104,29 @@ table th {
   }
 }
 
+.search {
+  .search__options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 0;
+  }
+  input {
+    padding: 5px;
+    margin-right: 10px;
+    &:not([type='submit']) {
+      min-height: 20px;
+    }
+    &[type='number'] {
+      width: 100px;
+    }
+  }
+  h2 {
+    margin-bottom: 5px;
+    color: #383838;
+  }
+}
+
 /* helpers */
 .text-center {
   text-align: center;

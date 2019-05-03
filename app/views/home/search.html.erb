@@ -1,0 +1,15 @@
+<div class="search">
+  <%= render "partials/search" %>
+</div>
+
+<div>
+  <hr>
+  <% @rooms.each do |room| %>
+    <h4>Hotel: <%= room.hotel.name %></h4>
+    <h4>Ciudad: <%= room.hotel.city %></h4>
+    <h4>Name: <%= room.name %></h4>
+    <p>Price: <%= room.price %></p>
+    <p>Num of beds: <%= room.amount_of_beds %></p>
+    <hr>
+  <% end %>  
+</div>
