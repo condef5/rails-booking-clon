@@ -28,6 +28,27 @@ class Api::RoomsController < ApiController
     end
   end
 
+  def book
+    if params[:min_date].present? && params[:max_date].present?
+      @room = Room.find(params[:id])
+      @bookings = @room.bookings
+      if @bookings.available?(params[:min_date], params[:max_date]).empty?
+        current_user.bookings.create(
+          start_date: Date.parse(params[:min_date]), 
+          end_date: Date.parse(params[:max_date]), 
+          paid_price: @room.discount,
+          room_id: @room.id
+        )
+        render json: { message: "the room was successfully booked"}
+      else
+        render json: { message: "the room is already booked" }, status: :unprocessable_entity
+      end
+      
+    else
+      render json: { message: "start_date and end_date are required" }, status: :unprocessable_entity
+    end 
+  end
+
   def update
     if @room.update(room_params)
       render json: @room, status: :ok

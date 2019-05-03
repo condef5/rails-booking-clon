@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
     resources :rooms do
       resources :promotions, controller: 'promotions_rooms'
+      post 'book', on: :member
     end
 
   end

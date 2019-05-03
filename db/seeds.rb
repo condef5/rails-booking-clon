@@ -8,7 +8,7 @@ end
 hotels = [
   { 
     name: 'El viajero',
-    email: 'drupvon+hotel4@gmail.com',
+    email: 'drupvon+hotel1@gmail.com',
     city: 'Trujillo',
     country: 'Peru',
     address: 'Jr. Moche 550'
@@ -16,7 +16,7 @@ hotels = [
   { 
     name: 'Green Paradise', 
     email: 'drupvon+hotel2@gmail.com',
-    city: 'Huanuco',
+    city: 'Tingo Maria',
     country: 'Peru',
     address: 'Jr. Ramones 140'
   },
@@ -29,7 +29,7 @@ hotels = [
   },
   { 
     name: 'Space',
-    email: 'drupvon+hotel2@gmail.com',
+    email: 'drupvon+hotel4@gmail.com',
     city: 'Huanuco',
     country: 'Peru',
     address: 'Jr. Ramones 140'
@@ -67,15 +67,15 @@ hotels.each do |hotel|
   end
   
   hotel.promotions.create(
-    start_date: Date.parse('28-04-2019'),
-    end_date: Date.parse('30-04-2019'),
+    start_date:  Date.today,
+    end_date:  Date.today + rand(10),
     discount_type: ['percentage', 'fixed'].sample,
     discount_amount: rand(50) + 1
   )
 
   hotel.rooms.sample.promotions.create(
-    start_date: Date.parse('28-04-2019'),
-    end_date: Date.parse('30-04-2019'),
+    start_date:  Date.today,
+    end_date:  Date.today + rand(10),
     discount_type: ['percentage', 'fixed'].sample,
     discount_amount: rand(50) + 1
   )
@@ -96,13 +96,12 @@ User.where(role: 'regular').all.each_with_index do |user, index|
   room = Hotel.find(index + 1).rooms.sample
   start_date = Date.today + rand(10)
   days = rand(10) + 1
-  user.bookings.create(
+  data = user.bookings.create(
     start_date: start_date,
     end_date: start_date + days,
     paid_price: days * room.price,
-    room_id: room
+    room_id: room.id
   )
 end
 
 puts "Finished seed"
-
