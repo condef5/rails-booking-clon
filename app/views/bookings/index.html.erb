@@ -1,0 +1,26 @@
+<div>
+  <h2>List Bookings</h2>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Paid Price</th>
+      <th>Room</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking|%>
+      <tr>
+        <td><%= booking.start_date %></td>
+        <td><%= booking.end_date %></td>
+        <td><%= booking.paid_price %></td>
+        <td><%= booking.room.name %></td>
+        <td><%= booking.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

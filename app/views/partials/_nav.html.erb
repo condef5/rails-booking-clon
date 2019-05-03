@@ -8,7 +8,7 @@
       <%= link_to "Promotions", root_path %>
 
       <% if current_user %>
-        <%= link_to "Bookings", root_path %>
+        <%= link_to "Bookings", bookings_path %>
         <a href="#">Hi <%= current_user.name %></a>
         <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
       <% else %>

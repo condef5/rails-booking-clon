@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: "home#index"
   get '/search', to: 'home#search'
   
+  resources :bookings 
+
   namespace :admin do
     root to: "hotels#index"
     get "/metrics", to: "hotels#metrics"
