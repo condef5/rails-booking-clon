@@ -2,7 +2,17 @@ class Api::RoomsController < ApiController
   before_action :set_room, only: [:show, :update, :destroy]
 
   def index
-    render json: Hotel.find(params[:hotel_id]).rooms
+    if params[:hotel_id].present?
+      render json: Hotel.find(params[:hotel_id]).rooms
+    else
+      query = {}
+      if params[:price_max].present? && params[:price_min].present?
+        query[:price] = params[:price_min]..params[:price_max]
+      end
+      query[:amount_of_beds] = params[:num_beds] if params[:num_beds].present?
+      @rooms = Room.where(query)
+      render json: @rooms 
+    end
   end
 
   def show
