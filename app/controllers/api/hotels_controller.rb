@@ -28,7 +28,7 @@ class Api::HotelsController < ApiController
 
   def destroy
     @hotel.destroy
-    render json: {},status: :no_content
+    render json: {}, status: :no_content
   end
 
   rescue_from ActiveRecord::RecordNotFound do |e|

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  validates :email, uniqueness: true
+
   has_many :bookings
   has_many :providers
   # Include default devise modules. Others available are:
