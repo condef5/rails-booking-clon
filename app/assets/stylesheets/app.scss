@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: Helvetica, sans-serif;
-  letter-spacing: 0.5px;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.25px;
 }
 
 a {
@@ -22,10 +22,17 @@ nav {
   }
   a {
     color: #fff;
-    padding-bottom: 0.25em;
     text-decoration: none;
     transition: all 0.5s;
     position: relative;
+  }
+  img {
+    width: 150px;
+  }
+  .logo {
+    &:hover {
+      background: transparent !important;
+    }
   }
 }
 
@@ -34,8 +41,15 @@ nav {
   padding: 10px 30px;
   align-items: center;
   justify-content: space-between;
+
   a {
-    margin-right: 7.5px;
+    margin-right: 5px;
+    padding: 8px;
+    border-radius: 3px;
+    &:hover {
+      transition: all ease 0.2s;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
   }
 }
 
@@ -107,18 +121,50 @@ table th {
 .search {
   .search__options {
     display: flex;
-    justify-content: center;
     align-items: center;
     margin: 1em 0;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: #febb02;
+    & > div {
+      display: flex;
+    }
+  }
+  .location input {
+    width: 250px;
   }
   input {
     padding: 5px;
     margin-right: 10px;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 2px;
+    transition: all 0.3s;
+
     &:not([type='submit']) {
+      box-shadow: 0 0 0 1px transparent inset;
       min-height: 20px;
     }
+
     &[type='number'] {
       width: 100px;
+    }
+
+    &[type='submit'] {
+      background-color: #07c;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 2px;
+      &:hover {
+        cursor: pointer;
+        background: #005999;
+      }
+    }
+
+    &:focus,
+    &:active {
+      box-shadow: 0 0 0 1px #d59c00 inset;
+      outline: none;
     }
   }
   h2 {

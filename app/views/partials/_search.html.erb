@@ -1,9 +1,17 @@
 <%= form_tag search_path, :method => 'get', class: 'search__options' do %>
-  <%= text_field_tag :destiny, params[:destiny], placeholder: 'Where are you going?' %>
-  <%= date_field_tag :start_date, params[:start_date], placeholder: 'Start Date' %>
-  <%= date_field_tag :end_date, params[:end_date], placeholder: 'Start Date' %>
-  <%= number_field_tag :price_min, params[:price_min], placeholder: 'Min price', min:'0' %>
-  <%= number_field_tag :price_max, params[:price_max], placeholder: 'Max price', min:'0' %>
-  <%= number_field_tag :num_beds, params[:num_beds], placeholder: 'Num of beds', min:'0' %>
-  <%= submit_tag "Search", :name => nil %>
+  <div class="location">
+    <%= text_field_tag :destiny, params[:destiny], placeholder: 'Where are you going?' %>
+  </div>
+  <div>
+    <%= date_field_tag :start_date, params[:start_date], placeholder: 'Start Date' %>
+    <%= date_field_tag :end_date, params[:end_date], placeholder: 'Start Date' %>
+  </div>
+  <div>
+    <%= number_field_tag :price_min, params[:price_min], placeholder: 'Min price', min:'0' %>
+    <%= number_field_tag :price_max, params[:price_max], placeholder: 'Max price', min:'0' %>
+    <%= number_field_tag :num_beds, params[:num_beds], placeholder: 'Num of beds', min:'0' %>
+  </div>
+  <div>
+    <%= submit_tag "Search", :name => nil %>
+  </div>
 <% end %>
