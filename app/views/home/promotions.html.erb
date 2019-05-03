@@ -1,0 +1,20 @@
+<div>
+  <hr>
+  <% @hotels.each do |hotel| %>
+    <h4>Hotel: <%= hotel.name %></h4>
+    <h4>Pais: <%= hotel.country %></h4>
+    <h4>Ciudad: <%= hotel.city %></h4>
+    <h2> 
+      Hasta <%= hotel.promotions.last.discount_amount %> 
+        <% if hotel.promotions.last.discount_type == "percentage"%>
+          %
+        <% else %>
+          Soles
+        <% end %>
+      de descuento 
+    </h2>
+    <p>Direccion: <%= hotel.address %></p>
+    <p>email: <%= hotel.email %></p>
+    <hr>
+  <% end %>  
+</div>
