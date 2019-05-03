@@ -2,10 +2,20 @@ class Api::BookingsController < ApiController
   before_action :set_booking, only: [:show, :update, :destroy]
   
   def index
-    render json: Room.find(params[:room_id]).bookings
+    authorize([:api, Booking])
+    if params[:room_id].present?
+      render json: Room.find(params[:room_id]).bookings
+    else
+      if current_user.role == "regular"
+        render json: current_user.bookings
+      else
+        render json: Booking.all
+      end
+    end
   end
   
   def show
+    authorize([:api, @booking])
     render json: @booking
   end
   
@@ -19,6 +29,7 @@ class Api::BookingsController < ApiController
   end
   
   def update
+    authorize([:api, @booking])
     if @booking.update(booking_params)
       render json: @booking, status: :ok
     else
@@ -27,8 +38,9 @@ class Api::BookingsController < ApiController
   end
   
   def destroy
+    authorize([:api, @booking])
     @booking.destroy
-    render json: {},status: :no_content
+    render json: {}, status: :no_content
   end
   
   rescue_from ActiveRecord::RecordNotFound do |e|

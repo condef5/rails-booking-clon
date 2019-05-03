@@ -1,4 +1,4 @@
-class Admin::RoomPolicy
+class Api::RoomPolicy
   attr_reader :user, :room
 
   def initialize(user, room)
@@ -6,16 +6,12 @@ class Admin::RoomPolicy
     @room = room
   end
 
-  def new?
-    user && user.has_role?('admin')
+  def index?
+    true
   end
 
   def show?
-    user && user.has_role?('admin')
-  end
-
-  def edit?
-    user && user.has_role?('admin')
+    true
   end
 
   def create?
@@ -26,5 +22,12 @@ class Admin::RoomPolicy
     user && user.has_role?('admin')
   end
 
+  def destroy?
+    user && user.has_role?('admin')
+  end
+  
+  def metrics?
+    user && user.has_role?('admin')
+  end
 end
   

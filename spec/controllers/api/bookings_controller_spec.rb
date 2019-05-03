@@ -5,9 +5,9 @@ RSpec.describe Api::BookingsController, type: :controller do
   def authorization_header
     user = User.create(
       email: "space@gmail.com",
-      name:'space',
-      password:'secret123',
-      role:'admin'
+      name: 'space',
+      password: 'secret123',
+      role: 'admin'
     )
     token = JSONWebToken.encode(user_id: user.id)
     { 'Authorization': "Bearer #{token}" }
@@ -30,14 +30,14 @@ RSpec.describe Api::BookingsController, type: :controller do
     )
     @user = User.create(
       email: "mperezzevallos+regular@gmail.com", 
-      name:'lucas', 
-      password:'regular', 
-      role:'regular'
+      name: 'lucas', 
+      password: 'regular', 
+      role: 'regular'
     )
     @booking = Booking.create(
       start_date: Date.parse('01-05-2019'), 
-      end_date: Date.parse('05-03-2019'), 
-      paid_price: 20, 
+      end_date: Date.parse('05-05-2019'), 
+      paid_price: 20,
       room_id: @room.id,
       user_id: @user.id
     )
@@ -64,7 +64,7 @@ RSpec.describe Api::BookingsController, type: :controller do
 
   describe 'GET show' do
     it 'returns http status ok' do
-      get :show, params: { 
+      get :show, params: {
         id: @booking.id,
         hotel_id: @hotel.id,
         room_id: @room.id
@@ -128,7 +128,7 @@ RSpec.describe Api::BookingsController, type: :controller do
         hotel_id: @hotel.id,
         room_id: @room.id,
         start_date: Date.parse('05-05-2019'), 
-        end_date: Date.parse('08-03-2019')
+        end_date: Date.parse('09-05-2019')
       }
       expect(response).to have_http_status(:ok)
     end
@@ -139,8 +139,8 @@ RSpec.describe Api::BookingsController, type: :controller do
         id: @booking.id,
         hotel_id: @hotel.id,
         room_id: @room.id,
-        start_date: Date.parse('05-05-2019'), 
-        end_date: Date.parse('08-03-2019'), 
+        start_date: Date.parse('05-05-2019'),
+        end_date: Date.parse('09-05-2019'),
         paid_price: 10
       }
       expected_hotel = JSON.parse(response.body)

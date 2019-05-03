@@ -2,15 +2,22 @@ class Api::UsersController < ApiController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
+    authorize([:api, User])
     render json: User.all 
   end
 
   def show
+    authorize([:api, @user])
     render json: @user 
+  end
+
+  def profile
+    render json: current_user
   end
 
   def create
     user = User.new(user_params)
+    authorize([:api, user])
     if user.save
       render json: user, status: :created
     else 
@@ -18,7 +25,8 @@ class Api::UsersController < ApiController
     end
   end
 
-  def update 
+  def update
+    authorize([:api, @user])
     if @user.update(user_params)
       render json: @user, status: :ok
     else 
@@ -27,6 +35,7 @@ class Api::UsersController < ApiController
   end
 
   def destroy
+    authorize([:api, @user])
     @user.destroy
     render json: {}, status: :no_content 
   end

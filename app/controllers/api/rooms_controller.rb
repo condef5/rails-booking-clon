@@ -2,6 +2,7 @@ class Api::RoomsController < ApiController
   before_action :set_room, only: [:show, :update, :destroy]
 
   def index
+    authorize([:api, Room])
     if params[:hotel_id].present?
       render json: Hotel.find(params[:hotel_id]).rooms
     else
@@ -16,11 +17,13 @@ class Api::RoomsController < ApiController
   end
 
   def show
+    authorize([:api, @room])
     render json: @room
   end
 
   def create
     room = Room.new(room_params)
+    authorize([:api, room])
     if room.save
       render json: room, status: :created
     else
@@ -50,6 +53,7 @@ class Api::RoomsController < ApiController
   end
 
   def update
+    authorize([:api, @room])
     if @room.update(room_params)
       render json: @room, status: :ok
     else
@@ -58,6 +62,7 @@ class Api::RoomsController < ApiController
   end
 
   def destroy
+    authorize([:api, @room])
     @room.destroy
     render json: {},status: :no_content
   end

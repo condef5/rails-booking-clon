@@ -21,7 +21,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     post 'login', to: 'session#login'
-    resources :users 
+    resources :users
+    get 'profile', to: 'users#profile'
+    resources :bookings
     resources :hotels do
       resources :promotions, controller: 'promotions_hotels'
       resources :rooms do

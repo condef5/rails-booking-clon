@@ -1,4 +1,4 @@
-class Admin::HotelPolicy
+class Api::HotelPolicy
   attr_reader :user, :hotel
 
   def initialize(user, hotel)
@@ -7,26 +7,18 @@ class Admin::HotelPolicy
   end
 
   def index?
-    user && user.has_role?('admin')
+    true
   end
 
   def show?
-    user && user.has_role?('admin')
+    true
   end
 
   def create?
     user && user.has_role?('admin')
   end
 
-  def new?
-    user && user.has_role?('admin')
-  end
-
   def update?
-    user && user.has_role?('admin')
-  end
-
-  def edit?
     user && user.has_role?('admin')
   end
 

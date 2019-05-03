@@ -4,10 +4,10 @@ RSpec.describe Api::UsersController, type: :controller do
 
   def authorization_header
     user = User.create(
-      email: "space@gmail.com",
-      name:'space',
-      password:'secret123',
-      role:'admin'
+      email: 'space@gmail.com',
+      name: 'space',
+      password: 'secret123',
+      role: 'admin'
     )
     token = JSONWebToken.encode(user_id: user.id)
     { 'Authorization': "Bearer #{token}" }
@@ -19,7 +19,7 @@ RSpec.describe Api::UsersController, type: :controller do
       name: 'lian',
       email: 'liamrn94@gmail.com',
       password: 'asdasdfjalksj',
-      role: 'user'
+      role: 'regular'
     )
   end
 
@@ -108,7 +108,7 @@ RSpec.describe Api::UsersController, type: :controller do
   describe 'DELETE destroy' do
     it 'returns http status no content' do
       delete :destroy, params: {
-        id: @user
+        id: @user.id
       }
       expect(response).to have_http_status(:no_content)
     end
