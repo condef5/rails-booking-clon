@@ -1,0 +1,10 @@
+# Hi <%= @booking.room.hotel.name %>
+---
+
+The book number <%= @booking.id%> has been successfully created in your hotel <%= @booking.room.hotel.name %> The data of the book is: 
+
+- **Start date**: <%= @booking.start_date %>
+- **End date**: <%= @booking.end_date %>
+- **Room**: <%= @booking.room.name %>
+
+Have a great day!

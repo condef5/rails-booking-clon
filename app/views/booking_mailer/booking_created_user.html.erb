@@ -1,0 +1,15 @@
+<h1>Hi <%= @booking.user.email %></h1>
+<p>
+  You book number <%= @booking.id%> has been successfully created . The data of the book iss: 
+  <dl>
+    <dt>Start date</dt>
+    <dd><%= @booking.start_date %></dd>
+    <dt>End date</dt>
+    <dd><%= @booking.end_date %></dd>
+    <dt>Room</dt>
+    <dd><%=@booking.room.name%></dd>
+    <dt>Hotel</dt>
+      <dd><%= @booking.room.hotel.name %></dd>
+  </dl>
+</p>
+<p>Have a great day!</p>
