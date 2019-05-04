@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   letter-spacing: 0.25px;
 }
 
@@ -9,7 +9,7 @@ a {
   text-decoration: none;
 }
 
-a[data-method='delete']:hover {
+a[data-method="delete"]:hover {
   color: #8e24aa;
 }
 
@@ -127,12 +127,12 @@ input {
   border-radius: 2px;
   transition: all 0.3s;
 
-  &:not([type='submit']) {
+  &:not([type="submit"]) {
     box-shadow: 0 0 0 1px transparent inset;
     min-height: 20px;
   }
 
-  &[type='number'] {
+  &[type="number"] {
     width: 100px;
   }
 }
@@ -163,7 +163,7 @@ input {
       box-shadow: 0 0 0 1px #d59c00 inset;
       outline: none;
     }
-    &[type='submit'] {
+    &[type="submit"] {
       background-color: #07c;
       color: #fff;
       font-size: 18px;
@@ -211,6 +211,7 @@ input {
       color: inherit;
       &:hover {
         color: #003580;
+        text-decoration: underline;
       }
     }
   }
