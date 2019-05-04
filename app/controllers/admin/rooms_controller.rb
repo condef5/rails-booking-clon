@@ -37,6 +37,12 @@ class Admin::RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    authorize [:admin, @room]
+    @room.destroy
+    redirect_to admin_hotel_path(@hotel), notice: 'Room was successfully destroyed.'
+  end
+
   private
   def set_room
     @hotel = Hotel.find(params[:hotel_id])
