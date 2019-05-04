@@ -8,10 +8,22 @@ You need to install the Gemfile
 bundle install
 ```
 
+Before executing the migrations and the seeds, comment on line 4 of the [Booking](https://github.com/codeableorg/rails-booking-clon/blob/master/app/models/booking.rb) model
+
+```
+# after_create :notification_booking_created, :reservation_reminde
+```
+
 Now run the migrations and seeds
 
 ```
 rails db:setup
+```
+
+After run migrations and seeds uncomment on line 4 of the [Booking](https://github.com/codeableorg/rails-booking-clon/blob/master/app/models/booking.rb) model
+
+```
+after_create :notification_booking_created, :reservation_reminde
 ```
 
 Don't forget to add the `.env` file, copy a template from [.env.example](https://github.com/codeableorg/rails-booking-clon/blob/master/.env.example)
