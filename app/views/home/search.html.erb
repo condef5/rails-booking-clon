@@ -4,12 +4,19 @@
 
 <div>
   <% @rooms.each do |room| %>
-    <h4>Hotel: <%= room.hotel.name %></h4>
-    <h4>City: <%= room.hotel.city %></h4>
-    <h4>Name: <%= room.name %></h4>
-    <p>Price: <%= room.price %></p>
-    <p>Num of beds: <%= room.amount_of_beds %></p>
-    <%= link_to "Reserved", reserve_path(room_id: room.id) %>
-    <hr>
+    <div class="row card">
+      <div class="media">
+        <%= image_tag room.image.variant(resize: "300x250") %>
+      </div>
+      <div class="info">
+        <h2><%= room.name %></h2>
+        <div>
+          <h4>Hotel: <%= room.hotel.name %></h4>
+          <p>Price: <%= room.price %></p>
+          <p>Num of beds: <%= room.amount_of_beds %></p>
+        </div>
+        <%= link_to "Reserve", reserve_path(room_id: room.id) %>
+      </div>
+    </div>
   <% end %>  
 </div>
