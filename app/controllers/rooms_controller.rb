@@ -5,6 +5,10 @@ class RoomsController < ApplicationController
     @rooms = Room.all
   end
 
+  def show
+    @room = Room.find(params[:id])
+  end
+
   def reserve
     if current_user.nil?
       flash[:alert] = "You need to sign in to reserve this room"
