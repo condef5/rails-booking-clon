@@ -30,5 +30,9 @@ class Admin::PromotionPolicy
       user && user.has_role?('admin')
     end
 
+    def destroy?
+      user && user.has_role?('admin')
+    end
+
   end
   

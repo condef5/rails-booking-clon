@@ -40,6 +40,7 @@ class Admin::PromotionsRoomsController < ApplicationController
   end
 
   def destroy
+    authorize [:admin,  @promotion]
     @promotion.destroy
     redirect_to admin_room_promotions_path, notice: 'Promotion was successfully destroyed.'
   end
