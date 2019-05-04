@@ -32,11 +32,11 @@ class RoomsController < ApplicationController
         session[:room_id] = nil if session[:room_id] 
         redirect_to root_path, notice: 'Room booked was successfully rented.'
       else
-        flash[:notice] = 'The room is already booked in dates'
+        flash[:notice] = 'This room is already booked in dates'
         render "reserve/index"
       end
     else
-      flash[:notice] = 'Start_date and end_date are required'
+      flash[:notice] = 'start_date and end_date are required'
       render "reserve/index"
     end
   end

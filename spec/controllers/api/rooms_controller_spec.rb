@@ -23,7 +23,7 @@ RSpec.describe Api::RoomsController, type: :controller do
       address: 'Jr arequipa 440'
     )
     @room = Room.create(
-      name: 'Habitación simple',
+      name: 'Single',
       amount_of_beds: 1,
       price: 20,
       hotel_id: @hotel.id
@@ -68,7 +68,7 @@ RSpec.describe Api::RoomsController, type: :controller do
   describe "POST create" do
     it "returns http status created" do
       post :create, params: { 
-        name: 'Habitación simple',
+        name: 'Single',
         amount_of_beds: 1,
         price: 20,
         hotel_id: @hotel.id
@@ -78,14 +78,14 @@ RSpec.describe Api::RoomsController, type: :controller do
     end
     it "returns the created room" do
       post :create, params: { 
-        name: 'Habitación simple',
+        name: 'Single',
         amount_of_beds: 1,
         price: 20,
         hotel_id: @hotel.id
       }
       expected_room = JSON.parse(response.body)
       expect(expected_room).to have_key("id")
-      expect(expected_room["name"]).to eq("Habitación simple")
+      expect(expected_room["name"]).to eq("Single")
     end
   end
 
@@ -95,7 +95,7 @@ RSpec.describe Api::RoomsController, type: :controller do
       patch :update, params: {
         id: @room.id,
         hotel_id: @hotel.id,
-        name: "Habitación doble"
+        name: "Double"
       }
       expect(response).to have_http_status(:ok)
     end
@@ -103,10 +103,10 @@ RSpec.describe Api::RoomsController, type: :controller do
       patch :update, params: {
         id: @room.id,
         hotel_id: @hotel.id,
-        name: "Habitación doble"
+        name: "Double"
       }
       expected_room = JSON.parse(response.body)
-      expect(expected_room["name"]).to eq("Habitación doble")
+      expect(expected_room["name"]).to eq("Double")
     end
   end
 

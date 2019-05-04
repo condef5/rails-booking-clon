@@ -23,7 +23,7 @@ RSpec.describe Api::BookingsController, type: :controller do
       address: 'Jr arequipa 440'
     )
     @room = Room.create(
-      name: 'Habitación simple', 
+      name: 'Single', 
       amount_of_beds: 1, 
       price: 20,
       hotel_id: @hotel.id

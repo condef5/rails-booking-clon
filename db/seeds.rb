@@ -37,10 +37,10 @@ hotels = [
 ]
 
 rooms = [
-  { name: 'Habitación simple', amount_of_beds: 1, price: 20, key: 'doble' },
-  { name: 'Habitación doble', amount_of_beds: 1, price: 35, key: 'ejecutiva' },
-  { name: 'Habitación matrimonial', amount_of_beds: 1, price: 40, key: 'matrimonial' },
-  { name: 'Habitación suite', amount_of_beds: 2, price: 90, key: 'suite' }
+  { name: 'Single', amount_of_beds: 1, price: 20, key: 'doble' },
+  { name: 'Double', amount_of_beds: 1, price: 35, key: 'ejecutiva' },
+  { name: 'Queen', amount_of_beds: 1, price: 40, key: 'matrimonial' },
+  { name: 'King', amount_of_beds: 2, price: 90, key: 'suite' }
 ]
 
 # create hotels with rooms and promotions

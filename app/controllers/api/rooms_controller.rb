@@ -42,9 +42,9 @@ class Api::RoomsController < ApiController
           paid_price: @room.discount,
           room_id: @room.id
         )
-        render json: { message: "the room was successfully booked"}
+        render json: { message: "Your room was successfully booked"}
       else
-        render json: { message: "the room is already booked" }, status: :unprocessable_entity
+        render json: { message: "This room is already booked" }, status: :unprocessable_entity
       end
       
     else

@@ -21,7 +21,7 @@ class Admin::HotelsController < ApplicationController
   def create
     @hotel = Hotel.new(hotel_params)
     if @hotel.save
-      redirect_to admin_hotel_path(@hotel), notice: 'hotel was successfully created.'
+      redirect_to admin_hotel_path(@hotel), notice: 'Hotel was successfully created.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Admin::HotelsController < ApplicationController
 
   def update
     if @hotel.update(hotel_params)
-      redirect_to admin_hotel_path(@hotel), notice: 'hotel was successfully updated.'
+      redirect_to admin_hotel_path(@hotel), notice: 'Hotel was successfully updated.'
     else
       render :edit
     end
