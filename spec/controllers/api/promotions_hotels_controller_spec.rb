@@ -10,6 +10,7 @@ RSpec.describe Api::PromotionsHotelsController, type: :controller do
       role:'admin'
     )
     token = JSONWebToken.encode(user_id: user.id)
+    user.update(valid_token: token)
     { 'Authorization': "Bearer #{token}" }
   end
 

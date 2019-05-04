@@ -20,11 +20,11 @@ class Api::SessionController < ApiController
   private
 
   def generate_token
-    JSONWebToken.encode(user_id: user.id) if user
+    JSONWebToken.encode(user_id: user_logged.id) if user_logged
   end
 
   def user_logged
     user = User.find_by_email(params[:email])
-    user if user & user.valid_password?(params[:password])
+    user if user && user.valid_password?(params[:password])
   end
 end

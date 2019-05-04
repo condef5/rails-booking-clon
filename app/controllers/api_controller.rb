@@ -11,7 +11,10 @@ class ApiController < ActionController::API
   end
 
   def user
-    User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+    return unless decoded_auth_token
+
+    user_id = decoded_auth_token[:user_id]
+    User.find_by(id: user_id, valid_token: http_auth_header)
   end
 
   def decoded_auth_token
