@@ -1,0 +1,20 @@
+<h2><%= @hotel.name %></h2>
+<div>
+  <p><b>Email:</b> <%= @hotel.email %></p>
+  <p><b>City:</b> <%= @hotel.city %></p>
+  <p><b>Country:</b> <%= @hotel.country %></p>
+  <p><b>Address:</b> <%= @hotel.address %></p>
+  <% if @hotel.image.attached? %>
+    <%= image_tag @hotel.image.variant(resize: "300x300") %>
+  <% end %>
+  <% if @hotel.gallery.attached? %>
+    <p>Gallery:</p>
+    <div class="gallery">
+      <% @hotel.gallery.each do |image| %>
+        <%= image_tag image.variant(resize: "300x300") %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<hr>

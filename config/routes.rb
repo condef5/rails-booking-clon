@@ -3,10 +3,9 @@ Rails.application.routes.draw do
   root to: "home#index"
   get '/search', to: 'home#search'
   get '/promotions', to: 'home#promotions'
-  
   resources :bookings
-  resources :rooms
-
+  resources :rooms, only: [:index, :show]
+  resources :hotels, only: [:index, :show]
   get '/reserve', to: 'rooms#reserve'
   post '/reserve', to: 'rooms#reserve_save'
 

@@ -7,6 +7,24 @@
 <div>
   <h2>List of Hotels</h2>
   <%= link_to "See more", root_path %>
+  <div>
+    <% @hotels.each do |hotel| %>
+      <div class="row card">
+        <div class="media">
+          <%= image_tag hotel.image.variant(resize: "400x350") %>
+        </div>
+        <div class="info">
+          <h2><%= link_to hotel.name, hotel_path(hotel) %></h2>
+          <div>
+            <p><b>City: </b><%= hotel.city %></p>
+            <p><b>Country: </b><%= hotel.country %></p>
+            <p><b>Address: </b><%= hotel.address %></p>
+            <p><b>Num of rooms: </b><%= hotel.rooms.length %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <div>

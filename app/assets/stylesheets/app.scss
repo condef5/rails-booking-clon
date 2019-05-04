@@ -118,7 +118,30 @@ table th {
   }
 }
 
+/* inputs */
+input {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #123;
+  padding: 10px 16px;
+  border-radius: 2px;
+  transition: all 0.3s;
+
+  &:not([type='submit']) {
+    box-shadow: 0 0 0 1px transparent inset;
+    min-height: 20px;
+  }
+
+  &[type='number'] {
+    width: 100px;
+  }
+}
+
 .search {
+  padding: 20px 15px;
+  margin: 0 -15px;
+  background: #f7f7f7;
+  margin-bottom: 2em;
   .search__options {
     display: flex;
     align-items: center;
@@ -131,40 +154,24 @@ table th {
     }
   }
   .location input {
-    width: 250px;
+    width: 230px;
   }
   input {
-    padding: 5px;
-    margin-right: 10px;
-    border: 0;
-    padding: 10px 16px;
-    border-radius: 2px;
-    transition: all 0.3s;
-
-    &:not([type='submit']) {
-      box-shadow: 0 0 0 1px transparent inset;
-      min-height: 20px;
+    border: none;
+    &:focus,
+    &:active {
+      box-shadow: 0 0 0 1px #d59c00 inset;
+      outline: none;
     }
-
-    &[type='number'] {
-      width: 100px;
-    }
-
     &[type='submit'] {
       background-color: #07c;
       color: #fff;
-      font-size: 16px;
+      font-size: 18px;
       border-radius: 2px;
       &:hover {
         cursor: pointer;
         background: #005999;
       }
-    }
-
-    &:focus,
-    &:active {
-      box-shadow: 0 0 0 1px #d59c00 inset;
-      outline: none;
     }
   }
   h2 {
@@ -176,4 +183,45 @@ table th {
 /* helpers */
 .text-center {
   text-align: center;
+}
+
+.row {
+  display: flex;
+  margin-top: 1.75em;
+
+  .media {
+    width: 35%;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  .info {
+    padding: 1em;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 25px;
+    margin-top: 0;
+    a {
+      color: inherit;
+      &:hover {
+        color: #003580;
+      }
+    }
+  }
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: #4a4a4a;
+  max-width: 100%;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s;
 }
