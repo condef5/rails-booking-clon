@@ -1,5 +1,9 @@
 # Rails Booking Clon
 
+## Documentation
+
+Read more [here](https://github.com/codeableorg/rails-booking-clon/blob/master/documentation.md)
+
 ## Public website
 
 The app should have a public website without a namespace.
