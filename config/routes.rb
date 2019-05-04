@@ -23,7 +23,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    # SessionController actions
     post 'login', to: 'session#login'
+    delete 'logout', to: 'session#logout'
+
     get 'profile', to: 'users#profile'
     resources :users
     resources :bookings
