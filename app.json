@@ -1,7 +1,5 @@
 {
-  "addons": [
-    "heroku-postgresql"
-  ],
+  "addons": ["heroku-postgresql"],
   "buildpacks": [
     {
       "url": "heroku/ruby"
@@ -32,9 +30,9 @@
       "quantity": 1
     }
   },
-  "name": "rails-booking-clon",
+  "name": "space-booking",
   "scripts": {
-    "postdeploy": "bin/setup"
+    "postdeploy": "bin/rails db:setup"
   },
   "stack": "heroku-18"
 }
